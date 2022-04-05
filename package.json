@@ -29,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/systemry420/mern-cars-app/issues"
   },
-  "homepage": "https://github.com/systemry420/mern-cars-app#readme"
+  "homepage": "https://github.com/systemry420/mern-cars-app#readme",
+  "devDependencies": {
+    "@types/styled-components": "^5.1.24"
+  }
 }
