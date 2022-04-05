@@ -20,7 +20,7 @@ const Home = () => {
   
   return (
     <Layout>
-        Home
+        <h1>Home</h1>
         {cars.map((car: any) => {
           return <Card {...car} />
         })}
