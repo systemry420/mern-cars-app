@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const Blog = require('./models/blog')
+const Car = require('./models/car')
 const app = express()
 const port = 4000
 // const dbConnect = require('./db')
@@ -20,3 +20,12 @@ mongoose.connect('mongodb+srv://ksm420:Pinkfloyd420@cluster0.kgbwi.mongodb.net/A
     console.log(err);
 })
 
+app.get('/api/cars', (req, response) => {
+    Car.find()
+        .then(cars => {
+            response.send(cars)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
