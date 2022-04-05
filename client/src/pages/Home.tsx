@@ -1,5 +1,6 @@
 import React from 'react'
-import { RootStateOrAny, useSelector } from 'react-redux'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import Card from '../components/Card'
 import Layout from '../components/Layout'
 import { getCars } from '../redux/actions/carsActions'
 
@@ -7,13 +8,22 @@ const Home = () => {
   const { cars } = useSelector((state: RootStateOrAny) => {
     return state.carsReducer
   })
-  
-  getCars()
 
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    dispatch(getCars())
+    return () => {
+    } 
+  }, [])
+  
+  
   return (
     <Layout>
         Home
-        {cars.length}
+        {cars.map((car: any) => {
+          return <Card {...car} />
+        })}
     </Layout>
   )
 }
