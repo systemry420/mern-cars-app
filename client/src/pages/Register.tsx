@@ -1,24 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import { userRegister } from '../redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 const Register = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirm, setConfirm] = useState('')
+
+  const dispatch = useDispatch()
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    if (username && password) {
+      dispatch(userRegister({username, password, confirm}))
+      setUsername('')
+      setPassword('')
+      setConfirm('')
+    }
+  }
+
   return (
     <Layout>
-      <Wrapper>
         <h1>Register</h1>  
+      <Wrapper onSubmit={handleSubmit}>
         <Input>
           <label htmlFor='username'>Username</label>
-          <input type='text' id='username' placeholder='Username' />
+          <input value={username} onChange={(e) => setUsername(e.target.value)} type='text' id='username' placeholder='Username' />
         </Input>        
         <Input>
           <label htmlFor='password'>Password</label>
-          <input type='text' id='password' placeholder='Password' />
+          <input value={password} onChange={(e) => setPassword(e.target.value)} type='text' id='password' placeholder='password' />
         </Input>
         <Input>
           <label htmlFor='confirm'>Confirm</label>
-          <input type='text' id='confirm' placeholder='Confirm' />
+          <input value={confirm} onChange={(e) => setConfirm(e.target.value)} type='text' id='confirm' placeholder='Confirm' />
         </Input>
         <Input>
         <input type='submit' value='Register'/>
@@ -31,7 +49,7 @@ const Register = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   padding: 1em;
   border-radius: 10px;
   box-shadow: 0 0 5px 5px lightgray;

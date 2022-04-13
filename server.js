@@ -9,6 +9,8 @@ const port = 4000
 //     res.send('hello')
 // })
 
+app.use(express.json())
+
 mongoose.connect('mongodb+srv://ksm420:Pinkfloyd420@cluster0.kgbwi.mongodb.net/Abc?retryWrites=true&w=majority', 
 {useUnifiedTopology: true, useNewUrlParser: true})
 .then(result => {
@@ -29,3 +31,5 @@ app.get('/api/cars', (req, response) => {
             console.log(err);
         })
 })
+
+app.use('/api/users', require('./routes/userRoutes'))

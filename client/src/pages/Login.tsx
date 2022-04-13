@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../redux/actions/userActions';
 
 const Login = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    if (username && password) {
+      dispatch(userLogin({username, password}))
+      setUsername('')
+      setPassword('')
+    }
+  }
+
   return (
     <Layout>
-      <Wrapper>
-        <h1>Login</h1>  
+      <h1>Login</h1>  
+      <Wrapper onSubmit={handleSubmit}>
         <Input>
           <label htmlFor='username'>Username</label>
-          <input type='text' id='username' placeholder='Username' />
+          <input value={username} onChange={(e) => setUsername(e.target.value)} type='text' id='username' placeholder='Username' />
         </Input>        
         <Input>
           <label htmlFor='password'>Password</label>
-          <input type='text' id='password' placeholder='password' />
+          <input value={password} onChange={(e) => setPassword(e.target.value)} type='text' id='password' placeholder='password' />
         </Input>
         <Input>
           <input type='submit' value='Login'/>
@@ -27,7 +42,7 @@ const Login = () => {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   padding: 1em;
   border-radius: 10px;
   box-shadow: 0 0 5px 5px lightgray;
