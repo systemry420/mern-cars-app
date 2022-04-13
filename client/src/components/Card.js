@@ -14,7 +14,7 @@ const Card = ({ name, image }) => {
 }
 
 const Wrapper = styled.div`
-    width: 90%;
+    width: 300px;
     margin: 1em;
     box-shadow: 0 0 4px 4px lightgray;
     padding: .5em;
@@ -22,6 +22,7 @@ const Wrapper = styled.div`
     border-raduis: 10px;
     img {
         width: 100%;
+        height: 180px;
     }
     .info {
         display: flex;
