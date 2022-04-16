@@ -14,6 +14,7 @@ const Login = () => {
     e.preventDefault()
     if (username && password) {
       dispatch(userLogin({username, password}))
+      
       setUsername('')
       setPassword('')
     }

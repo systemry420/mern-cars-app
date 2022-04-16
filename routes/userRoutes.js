@@ -3,7 +3,7 @@ const UserModel = require('../models/user')
 const router = express.Router()
 
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body
 
@@ -18,7 +18,7 @@ router.post('/login', (req, res) => {
 })
 
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     try {
         const user = new UserModel(req.body)
         await user.save()
