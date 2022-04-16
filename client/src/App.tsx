@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -16,10 +16,17 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/booking' element={<Booking />} />
+          <Route path='/booking/:carId' element={<Booking />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
+const ProtectedRoute = (props: any) => {
+  let user = localStorage.getItem('user')
+  if (user)
+    return <Route {...props} />
+  else 
+    return <Navigate to='/login' />
+}
 export default App;

@@ -1,13 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Card = ({ name, image }) => {
+const Card = ({ _id, name, image }) => {
   return (
     <Wrapper>
         <img src={image} alt={name} />
         <div className='info'>
             <h2>{name}</h2>
-            <button>Book Now</button>
+            <button>
+                <Link to={`/booking/${_id}`}>Book Now</Link>
+            </button>
         </div>
     </Wrapper>
   )
